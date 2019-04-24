@@ -1,9 +1,6 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var Router = express.Router;
+import express, { Router } from 'express';
+import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 
 const makeRouter = (behaviors, asyncManager) => {
   const router = Router();
@@ -13,9 +10,9 @@ const makeRouter = (behaviors, asyncManager) => {
   return router;
 }
 
-var app = express();
+const app = express();
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
