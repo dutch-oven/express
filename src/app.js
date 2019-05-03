@@ -5,7 +5,7 @@ import morgan from 'morgan';
 const makeRouter = (behaviors, asyncManager) => {
   const router = Router();
   behaviors.forEach(({endpoint, method, behavior}) => {
-    router[method](endpoint, asyncManager(behavior));
+    router[method](endpoint, ...behavior.map(b => asyncManager(b)));
   });
   return router;
 }
