@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import csrf from 'csurf';
 
 const makeRouter = (behaviors, asyncManager) => {
   const router = Router();
@@ -18,5 +19,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(csrf());
 
 module.exports = app;
