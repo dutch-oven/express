@@ -12,13 +12,17 @@ const makeRouter = (behaviors, asyncManager) => {
   return router;
 }
 
-const app = express();
+const makeApp = config => {
+  const app = express();
 
-app.use(helmet());
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(csrf());
+  app.use(helmet());
+  app.use(morgan('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(csrf());
 
-module.exports = app;
+  return app;
+};
+
+module.exports = makeApp;
