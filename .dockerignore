@@ -1,0 +1,10 @@
+# overhead
+Dockerfile
+.dockerignore
+.gitignore
+README.md
+.git
+
+# artifacts
+build
+node_modules
