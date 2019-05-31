@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import csrf from 'csurf';
 import logger from './util/logger';
+import errorHandler from './util/errorHandler';
 
 const makeRouter = (behaviors, asyncManager) => {
   const router = Router();
@@ -22,6 +23,11 @@ const makeApp = config => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(csrf({cookie: true}));
+
+
+
+  app.use((req, res, next) => next({status: 404}))
+  app.use(errorHandler(logger));
 
   return app;
 };
