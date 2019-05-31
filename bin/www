@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+require = require('esm')(module);
 var makeApp = require('../src/app');
 var debug = require('debug')('express-boilerplate:server');
 var http = require('http');
