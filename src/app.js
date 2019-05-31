@@ -21,7 +21,7 @@ const makeApp = config => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(csrf());
+  app.use(csrf({cookie: true}));
 
   return app;
 };
