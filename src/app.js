@@ -24,7 +24,8 @@ const makeApp = config => {
   app.use(cookieParser());
   app.use(csrf({cookie: true}));
 
-
+  resources.forEach(({ resource, behaviors }) =>
+    app.use(resource, makeRouter(behaviors, asyncManager)));
 
   app.use((req, res, next) => next({status: 404}))
   app.use(errorHandler(logger));
