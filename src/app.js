@@ -5,6 +5,9 @@ import helmet from 'helmet';
 import csrf from 'csurf';
 import logger from './util/logger';
 import errorHandler from './util/errorHandler';
+import asyncManager from './util/asyncManager';
+
+import resources from './resources';
 
 const makeRouter = (behaviors, asyncManager) => {
   const router = Router();
