@@ -7,6 +7,9 @@ import logger from './util/logger';
 import errorHandler from './util/errorHandler';
 import asyncManager from './util/asyncManager';
 
+import boundary from './util/boundary';
+import entityMap from './util/entityMap';
+
 import resources from './resources';
 
 const makeRouter = (behaviors, asyncManager) => {
