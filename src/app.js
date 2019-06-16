@@ -12,10 +12,10 @@ import entityMap from './util/entityMap';
 
 import resources from './resources';
 
-const makeRouter = (behaviors, asyncManager) => {
+const makeRouter = (behaviors, asyncManager, {logger, entityMap}) => {
   const router = Router();
   behaviors.forEach(({endpoint, method, behavior}) => {
-    router[method](endpoint, ...behavior.map(b => asyncManager(b)));
+    router[method](endpoint, behavior({logger, entittyMap}).map(b => asyncManager(b)));
   });
   return router;
 }
@@ -31,7 +31,7 @@ const makeApp = config => {
   app.use(csrf({cookie: true}));
 
   resources.forEach(({ resource, behaviors }) =>
-    app.use(resource, makeRouter(behaviors, asyncManager)));
+    app.use(resource, makeRouter(behaviors, asyncManager, {logger, entityMap})));
 
   app.use((req, res, next) => next({status: 404}))
   app.use(errorHandler(logger));
