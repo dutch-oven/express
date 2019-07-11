@@ -15,7 +15,7 @@ import resources from './resources';
 const makeRouter = (behaviors, asyncManager, {logger, entityMap}) => {
   const router = Router();
   behaviors.forEach(({endpoint, method, behavior}) => {
-    router[method](endpoint, behavior({logger, entittyMap}).map(b => asyncManager(b)));
+    router[method](endpoint, behavior({logger, entityMap}).map(b => asyncManager(b)));
   });
   return router;
 }
