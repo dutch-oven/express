@@ -7,9 +7,9 @@ RUN apk update && apk upgrade && apk add npm nodejs
 ENV PORT 80
 ENV NODE_ENV production
 
-COPY package*.json /app
+COPY package*.json /app/
 RUN npm install
 
-COPY . /app
+COPY . /app/
 
 CMD ./bin/www
