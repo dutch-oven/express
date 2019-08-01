@@ -1,1 +1,1 @@
-export const boundary = (...fns) => obj => fns.reduce((acc, fn) => fn(acc), obj))
+export default (...fns) => obj => fns.reduce((acc, fn) => fn(acc), obj);
