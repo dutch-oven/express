@@ -30,7 +30,7 @@ const makeApp = config => {
   app.use(cookieParser());
   app.use(csrf({cookie: true}));
 
-  resources({logger, boundary, entityMap: entityMap(config)}).forEach(({ resource, behaviors }) =>
+  resources({logger, boundary, entityMap: config ? entityMap(config) : undefined}).forEach(({ resource, behaviors }) =>
     app.use(resource, makeRouter(behaviors, asyncManager)));
 
   app.use((req, res, next) => next({status: 404}))
