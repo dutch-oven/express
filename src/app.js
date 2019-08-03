@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
-import csrf from 'csurf';
+
 import logger from './util/logger';
 import errorHandler from './util/errorHandler';
 import asyncManager from './util/asyncManager';
@@ -28,7 +28,6 @@ const makeApp = config => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
-  app.use(csrf({cookie: true}));
 
   resources({logger, boundary, entityMap: config ? entityMap(config) : undefined}).forEach(({ resource, behaviors }) =>
     app.use(resource, makeRouter(behaviors, asyncManager)));
