@@ -29,8 +29,12 @@ const makeApp = config => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
 
-  resources({logger, boundary, entityMap: config ? entityMap(config) : undefined}).forEach(({ resource, behaviors }) =>
-    app.use(resource, makeRouter(behaviors, asyncManager)));
+  resources(
+    {logger,
+     boundary,
+     entityMapper: config ? entityMap(config) : undefined
+    }).forEach(({ resource, behaviors }) =>
+      app.use(resource, makeRouter(behaviors, asyncManager)));
 
   app.use((req, res, next) => next({status: 404}))
   app.use(errorHandler(logger));
