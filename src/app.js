@@ -32,7 +32,7 @@ const makeApp = config => {
   resources(
     {logger,
      boundary,
-     entityMapper: config ? entityMap(config) : undefined
+     entityMapper: config ? entityMap(config) : entityMap
     }).forEach(({ resource, behaviors }) =>
       app.use(resource, makeRouter(behaviors, asyncManager)));
 
