@@ -12,11 +12,17 @@ import entityMap from './util/entityMap';
 
 import resources from './resources';
 
-const makeRouter = (behaviors = [], asyncManager = () => {}) => {
+const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => {
   const router = Router();
+
+  middlewares.forEach(middleware => {
+    router.use(middleware);
+  });
+
   behaviors.forEach(({endpoint, method, behavior}) => {
     router[method](endpoint, behavior.map(b => asyncManager(b)));
   });
+
   return router;
 }
 
@@ -33,8 +39,8 @@ const makeApp = config => {
     {logger,
      boundary,
      entityMapper: config ? entityMap(config) : entityMap
-    }).forEach(({ resource, behaviors }) =>
-      app.use(resource, makeRouter(behaviors, asyncManager)));
+    }).forEach(({ resource, behaviors, middlewares }) =>
+      app.use(resource, makeRouter(behaviors, asyncManager, middlewares)));
 
   app.use((req, res, next) => next({status: 404}))
   app.use(errorHandler(logger));
