@@ -29,6 +29,8 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
 const makeApp = config => {
   const app = express();
 
+  app.set('trust proxy', true);
+
   app.use(helmet());
   app.use(morgan('combined', { stream: logger.stream }));
   app.use(express.json());
