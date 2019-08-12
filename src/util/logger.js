@@ -14,4 +14,4 @@ logger.stream = {
   }
 }
 
-export default logger
+export default logger;
