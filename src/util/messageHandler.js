@@ -1,16 +1,28 @@
-import rabbot from  'rabbot';
+import amqp from 'amqplib/callback_api';
 
-export default async ({host, user, pass, port, vhost}) => {
+let conn, ch, uri;
 
-  return await rabbot.configure({
-    connection: {
-      name: 'default',
-      host,
-      user,
-      pass,
-      port,
-      vhost,
-      replyQueue: 'customReplyQueue'
-    }
-  })
+const establishConnection = connString => {
+  uri = connString;
+  amqp.connect(uri, (err, connection) => {
+    if (err) throw err;
+    conn = connection;
+  });
+}
+
+const createChannel = conn => {
+  conn.createChannel((err, channel) => {
+    if(err) throw err;
+
+    channel.assertQueue(queue, {
+      durable: false
+    });
+
+    ch = channel;
+  });
 };
+
+const send = (msg, queue) => {
+  if(!ch) createChannel(establishConnection(uri));
+  ch.sendToQueue(queue, Buffer.from(msg));
+}
