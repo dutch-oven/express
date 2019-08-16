@@ -22,7 +22,7 @@ const createChannel = conn => {
   });
 };
 
-const send = (msg, queue) => {
+const write = (msg, queue) => {
   if(!ch) createChannel(establishConnection(uri));
   ch.sendToQueue(queue, Buffer.from(msg));
 }
