@@ -25,4 +25,9 @@ const createChannel = conn => {
 const write = (msg, queue) => {
   if(!ch) createChannel(establishConnection(uri));
   ch.sendToQueue(queue, Buffer.from(msg));
-}
+};
+
+const read = (handler, queue) => {
+  if(!ch) createChannel(establishConnection(uri));
+  ch.consume(queue, handler, { noAck: true });
+};
