@@ -9,6 +9,7 @@ import asyncManager from './util/asyncManager';
 
 import boundary from './util/boundary';
 import entityMap from './util/entityMap';
+import messageHandler from './util/messageHandler';
 
 import resources from './resources';
 
@@ -26,7 +27,7 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
   return router;
 }
 
-const makeApp = config => {
+const makeApp = ({entityConfig, messageConfig} = {}) => {
   const app = express();
 
   app.set('trust proxy', true);
