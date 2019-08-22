@@ -27,7 +27,7 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
   return router;
 }
 
-const makeApp = ({entityConfig, messageConfig} = {}) => {
+const makeApp = ({entityConfig, messageConfig, ...config} = {}) => {
   const app = express();
 
   app.set('trust proxy', true);
@@ -40,6 +40,7 @@ const makeApp = ({entityConfig, messageConfig} = {}) => {
 
   resources(
     {
+      config,
       logger,
       boundary,
       messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
