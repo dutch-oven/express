@@ -39,13 +39,16 @@ const makeApp = ({entityConfig, messageConfig} = {}) => {
   app.use(cookieParser());
 
   resources(
-    {logger,
-     boundary,
-     entityMapper: config ? entityMap(config) : entityMap
-    }).forEach(({ resource, behaviors, middlewares }) =>
-      app.use(resource, makeRouter(behaviors, asyncManager, middlewares)));
+    {
+      logger,
+      boundary,
+      messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
+      entityMapper: entityConfig ? entityMap(entityConfig) : entityMap
+    }
+  ).forEach(({ resource, behaviors, middlewares }) =>
+    app.use(resource, makeRouter(behaviors, asyncManager, middlewares)));
 
-  app.use((req, res, next) => next({status: 404}))
+  app.use((req, res, next) => next({status: 404}));
   app.use(errorHandler(logger));
 
   return app;
