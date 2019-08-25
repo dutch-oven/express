@@ -21,7 +21,7 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
   });
 
   behaviors.forEach(({endpoint, method, behavior}) => {
-    router[method](endpoint, behavior.map(b => asyncManager(b)));
+    router[method](endpoint, ...behavior.map(b => asyncManager(b)));
   });
 
   return router;
