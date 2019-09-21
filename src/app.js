@@ -49,7 +49,7 @@ const makeApp = ({entityConfig, messageConfig, ...config} = {}) => {
   ).forEach(({ resource, behaviors, middlewares }) =>
     app.use(resource, makeRouter(behaviors, asyncManager, middlewares)));
 
- app.use('*', (req, res, next) => next({status: 404}));
+  app.use('*', (req, res, next) => next({status: 404}));
   app.use(errorHandler(logger));
 
   return app;

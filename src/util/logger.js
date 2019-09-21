@@ -6,7 +6,7 @@ const logger = createLogger({
   transports: [
     new transports.Console(),
   ]
-})
+});
 
 logger.stream = {
   write: message => {
