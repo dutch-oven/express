@@ -55,4 +55,4 @@ const makeApp = ({entityConfig, messageConfig, ...config} = {}) => {
   return app;
 };
 
-module.exports = makeApp;
+export default makeApp;
