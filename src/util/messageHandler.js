@@ -18,12 +18,12 @@ const createChannel = async (connection, queue) => {
 };
 
 const write = async (queue, msg) => {
-  if(!ch) await createChannel(establishConnection(uri), queue);
+  if(!ch) await createChannel(await establishConnection(uri), queue);
   ch.sendToQueue(queue, Buffer.from(msg));
 };
 
 const read = async (queue, handler) => {
-  if(!ch) await createChannel(establishConnection(uri), queue);
+  if(!ch) await createChannel(await establishConnection(uri), queue);
   ch.consume(queue, handler, { noAck: true });
 };
 
