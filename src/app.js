@@ -29,6 +29,7 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
 }
 
 const makeApp = ({
+    crossOrigin,
     entityConfig,
     messageConfig,
     ...config
@@ -37,6 +38,8 @@ const makeApp = ({
   const app = express();
 
   app.set('trust proxy', true);
+
+  if(crossOrigin) app.use(cors())
 
   app.use(helmet());
   app.use(morgan('combined', { stream: logger.stream }));
