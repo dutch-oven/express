@@ -2,6 +2,7 @@ import express, { Router } from 'express';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import logger from './util/logger';
 import errorHandler from './util/errorHandler';
@@ -27,7 +28,12 @@ const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => 
   return router;
 }
 
-const makeApp = ({entityConfig, messageConfig, ...config} = {}) => {
+const makeApp = ({
+    entityConfig,
+    messageConfig,
+    ...config
+  } = {}) => {
+
   const app = express();
 
   app.set('trust proxy', true);
