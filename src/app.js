@@ -11,6 +11,7 @@ import asyncManager from './util/asyncManager';
 import boundary from './util/boundary';
 import entityMap from './util/entityMap';
 import messageHandler from './util/messageHandler';
+import cacheHandler from "./util/cacheHandler";
 
 import resources from './resources';
 
@@ -32,6 +33,7 @@ const makeApp = ({
     crossOrigin,
     entityConfig,
     messageConfig,
+    cacheConfig,
     ...config
   } = {}) => {
 
@@ -53,6 +55,7 @@ const makeApp = ({
       logger,
       boundary,
       messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
+      cacheHandler: cacheConfig ? cacheHandler(cacheConfig) : cacheHandler,
       entityMapper: entityConfig ? entityMap(entityConfig) : entityMap
     }
   ).forEach(({ resource, behaviors, middlewares }) =>
