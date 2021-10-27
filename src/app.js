@@ -15,6 +15,10 @@ import cacheHandler from "./util/cacheHandler";
 
 import resources from './resources';
 
+import { monotonicFactory } from 'ulid'
+
+const ulid = monotonicFactory()
+
 const makeRouter = (behaviors = [], asyncManager = () => {}, middlewares=[]) => {
   const router = Router();
 
@@ -56,6 +60,7 @@ const makeApp = ({
       boundary,
       messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
       cacheHandler: cacheConfig ? cacheHandler(cacheConfig) : cacheHandler,
+      idManager: {getId: ulid}, // all resources share a monotonicFactory ?
       entityMapper: entityConfig ? entityMap(entityConfig) : entityMap
     }
   ).forEach(({ resource, behaviors, middlewares }) =>
