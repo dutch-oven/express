@@ -3,9 +3,10 @@
 /**
  * Module dependencies.
  */
-import makeApp from '../src/app.js'
 import http from 'http'
 import debug from 'debug'
+
+import makeApp from '../src/app.js'
 
 /**
  * Get the config and build the app
