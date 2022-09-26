@@ -3,17 +3,16 @@
 /**
  * Module dependencies.
  */
-require = require('esm')(module);
-var makeApp = require('../src/app').default;
-var debug = require('debug')('express-boilerplate:server');
-var http = require('http');
+import makeApp from '../src/app.js'
+import http from 'http'
+import debug from 'debug'
 
 /**
  * Get the config and build the app
  */
 
 var config;
-if(process.argv.length > 2)
+if (process.argv.length > 2)
   config = JSON.parse(process.argv[2]);
 var app = makeApp(config);
 
@@ -95,5 +94,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  debug('express-boilerplate:server')('Listening on ' + bind);
 }
