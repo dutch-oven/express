@@ -4,18 +4,18 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 
-import logger from './util/logger';
-import errorHandler from './util/errorHandler';
-import asyncManager from './util/asyncManager';
+import logger from './util/logger.js';
+import errorHandler from './util/errorHandler.js';
+import asyncManager from './util/asyncManager.js';
 
-import boundary from './util/boundary';
-import entityMap from './util/entityMap';
-import messageHandler from './util/messageHandler';
-import cacheHandler from "./util/cacheHandler";
+import boundary from './util/boundary.js';
+import entityMap from './util/entityMap.js';
+import messageHandler from './util/messageHandler.js';
+import cacheHandler from "./util/cacheHandler.js";
 
-import resources from './resources';
+import resources from './resources/index.js';
 
-import { monotonicFactory } from 'ulid'
+import { monotonicFactory } from 'ulid';
 
 const ulid = monotonicFactory()
 
