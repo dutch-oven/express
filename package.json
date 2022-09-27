@@ -6,19 +6,18 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "amqplib": "^0.8.0",
-    "cookie-parser": "~1.4.3",
+    "amqplib": "^0.10.3",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "csurf": "^1.10.0",
-    "debug": "~2.6.9",
+    "csurf": "^1.11.0",
+    "debug": "^4.3.4",
     "esm": "^3.2.25",
-    "express": "~4.16.0",
-    "helmet": "^3.18.0",
-    "http-errors": "^1.7.2",
-    "knex": "^0.95.11",
-    "morgan": "~1.9.0",
-    "redis": "^3.1.2",
+    "express": "^4.18.1",
+    "helmet": "^6.0.0",
+    "http-errors": "^2.0.0",
+    "knex": "^2.3.0",
+    "morgan": "^1.10.0",
     "ulid": "^2.3.0",
-    "winston": "^3.2.1"
+    "winston": "^3.8.2"
   }
 }
