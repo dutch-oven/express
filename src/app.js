@@ -8,10 +8,9 @@ import logger from './util/logger.js';
 import errorHandler from './util/errorHandler.js';
 import asyncManager from './util/asyncManager.js';
 
-import boundary from './util/boundary.js';
-import entityMap from './util/entityMap.js';
-import messageHandler from './util/messageHandler.js';
-import cacheHandler from "./util/cacheHandler.js";
+import boundary from './util/boundary';
+import entityMap from './util/entityMap';
+import messageHandler from './util/messageHandler';
 
 import resources from './resources/index.js';
 
@@ -59,7 +58,6 @@ const makeApp = ({
       logger,
       boundary,
       messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
-      cacheHandler: cacheConfig ? cacheHandler(cacheConfig) : cacheHandler,
       idManager: {getId: ulid}, // all resources share a monotonicFactory ?
       entityMapper: entityConfig ? entityMap(entityConfig) : entityMap
     }
