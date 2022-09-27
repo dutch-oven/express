@@ -8,9 +8,9 @@ import logger from './util/logger.js';
 import errorHandler from './util/errorHandler.js';
 import asyncManager from './util/asyncManager.js';
 
-import boundary from './util/boundary';
-import entityMap from './util/entityMap';
-import messageHandler from './util/messageHandler';
+import boundary from './util/boundary.js';
+import entityMap from './util/entityMap.js';
+import messageHandler from './util/messageHandler.js';
 
 import resources from './resources/index.js';
 
