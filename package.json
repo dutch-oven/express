@@ -2,8 +2,13 @@
   "name": "express-boilerplate",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www.js"
+  },
+  "engines": {
+    "npm": "^8 <9",
+    "node": "^18 <19"
   },
   "dependencies": {
     "amqplib": "^0.10.3",
