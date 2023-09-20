@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
+import ajv from 'ajv';
 
 import logger from './util/logger.js';
 import errorHandler from './util/errorHandler.js';
@@ -59,6 +60,7 @@ const makeApp = ({
       boundary,
       messageHandler: messageConfig ? messageHandler(messageConfig) : messageHandler,
       idManager: {getId: ulid}, // all resources share a monotonicFactory ?
+      schemaValidator: (new Ajv({allErrors: true})),
       entityMapper: entityConfig ? entityMap(entityConfig) : entityMap
     }
   ).forEach(({ resource, behaviors, middlewares }) =>
