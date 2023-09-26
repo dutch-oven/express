@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import ajv from 'ajv';
+import Ajv from 'ajv';
 
 import logger from './util/logger.js';
 import errorHandler from './util/errorHandler.js';
