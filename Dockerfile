@@ -15,4 +15,4 @@ RUN npm ci && apk del npm
 
 COPY . /app/
 
-CMD ./bin/www.js
+CMD ./bin/serve.js
